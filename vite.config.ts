@@ -92,36 +92,6 @@ export default defineConfig((config) => {
     },
     build: {
       target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'vendor': [
-              'react',
-              'react-dom',
-              '@remix-run/react'
-            ]
-          }
-        }
-      }
-    },
-    optimizeDeps: {
-      exclude: [
-        '@xterm/addon-fit',
-        '@xterm/addon-web-links',
-        '@xterm/xterm',
-        'lucide-react'
-      ],
-      include: [
-        'react',
-        'react-dom',
-        '@remix-run/react'
-      ],
-      esbuildOptions: {
-        target: 'esnext'
-      }
-    },
-    resolve: {
-      dedupe: ['react', 'react-dom', '@remix-run/react']
     },
     plugins: [
       nodePolyfills({
@@ -134,7 +104,6 @@ export default defineConfig((config) => {
           v3_relativeSplatPath: true,
           v3_throwAbortReason: true,
           v3_lazyRouteDiscovery: true,
-          v3_singleFetch: true
         },
       }),
       UnoCSS(),
@@ -156,13 +125,6 @@ export default defineConfig((config) => {
         },
       },
     },
-    server: {
-      hmr: {
-        protocol: process.env.VITE_HMR_PROTOCOL || 'ws',
-        host: process.env.VITE_HMR_HOST || 'localhost',
-        port: parseInt(process.env.VITE_HMR_PORT || '5173'),
-      }
-    }
   };
 });
 
